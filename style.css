@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#stockContainer button {
+    margin-bottom: 30px;
+}

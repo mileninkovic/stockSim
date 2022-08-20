@@ -21,6 +21,7 @@ function stock(ticker, name, value, risk) {
 }
 
 let newValue = null;
+let funds = 300000;
 let arrayTickers = [];
 let stockContainer = document.getElementById("stockContainer");
 let stockTicker = document.getElementById("ticker");
@@ -66,11 +67,13 @@ const setup = () => {
         
         let buyButton = document.createElement("button");
         buyButton.setAttribute("id", ticker.ticker+"Buy");
+        buyButton.setAttribute("name", ticker.ticker);
         buyButton.innerText = "Buy";
         buyButtons.push(buyButton);
 
         let sellButton = document.createElement("button");
         sellButton.setAttribute("id", ticker.ticker+"Sell");
+        sellButton.setAttribute("name", ticker.ticker);
         sellButton.innerText = "Sell";
         sellButtons.push(sellButton);
 
@@ -84,6 +87,27 @@ const setup = () => {
         stockContainer.appendChild(buyButton);
         stockContainer.appendChild(sellButton);
     });
+
+    buyButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            buyStock(this.getAttribute("name"));
+        })
+    });
+
+    sellButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            sellStock(this.getAttribute("name"));
+        })
+    });
+    document.getElementById("stockFunds").innerText = "Funds: " + (funds).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + "$"; // FIX CURRENCY FORMAT
+}
+
+const sellStock = (ticker) => {
+    console.log(ticker);
+}
+
+const buyStock = (ticker) => {
+    console.log(ticker);
 }
 
 setup();
